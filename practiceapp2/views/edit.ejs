@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Edit</title>
+</head>
+
+<body>
+    <h1>更新フォーム</h1>
+    <form action="/update/<%= savings[0].id %>" method="POST">
+        <p>支出 <input type="text" name="savings" value="<%= savings[0].savings %>"></p>
+        <p>概要 <select name="summary" size="1" value="<%= savings[0].summary %>">
+                <option value="">あてはまるものを選んでください</option>
+                <option value="食費">食費</option>
+                <option value="生活用品費">生活用品費</option>
+                <option value="雑費">雑費</option>
+            </select>
+        </p>
+        <p>日付<input type="date" name="date" value="<%= savings[0].date %>" inputmode="verbatim"
+                placeholder="0000/00/00"></p>
+        <p><button type="submit">更新</button></p>
+    </form>
+</body>
+
+</html>

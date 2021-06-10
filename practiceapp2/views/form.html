@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>入力フォーム</title>
+</head>
+
+<body>
+    <h1>入力フォーム</h1>
+    <form action="/" method="post">
+        <p>支出 <input type="text" name="savings"></p>
+        <p>概要 <select name="summary" size="1">
+                <option value="">あてはまるものを選んでください</option>
+                <option value="食費">食費</option>
+                <option value="生活用品費">生活用品費</option>
+                <option value="雑費">雑費</option>
+            </select>
+        </p>
+        <p>月日<input type="date" name="date" inputmode="verbatim" placeholder="0000/00/00"></p>
+        <p><button type="submit">追加</button></p>
+    </form>
+
+</body>
+
+</html>

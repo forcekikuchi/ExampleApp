@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+    <title>家計簿</title>
+
+</head>
+
+<body>
+    <h1>家計簿</h1>
+    <div class="container" style="margin-top:50px;">
+        <div class="row align-items-center">
+            <div class="col">
+                <p>
+                    <a href="/create" class="btn btn-primary" role="button">追加</a>
+                    <a href="/sortDate" class="btn btn-primary" role="button">日付順</a>
+                    <a href="/sortPrice" class="btn btn-primary" role="button">価格順</a>
+                </p>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">日付</th>
+                    <th scope="col">支出</th>
+                    <th scope="col">概要</th>
+                    <th scope="col">更新</th>
+                    <th scope="col">削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i in savings) { %>
+                    <tr>
+                        <% let obj=savings[i]; %>
+                            <th>
+                                <%= obj.date %>
+                            </th>
+                            <th>
+                                &yen;<%= obj.savings %>
+                            </th>
+                            <th>
+                                <%= obj.summary %>
+                            </th>
+                            <th><a href="./edit/<%= obj.id %>">更新</a></th>
+                            <th><a href="/delete/<%= obj.id %>">削除</a></th>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
