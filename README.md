@@ -21,7 +21,7 @@ id saving summary date
 それぞれの年はクリックできるようになっています。  
 クリックするとその年の収支のグラフと表が表示されます。  
 ![グラフページ1](./img/image7.PNG)  
-![グラフページ2](./img/image8.PNG) 
+![グラフページ2](./img/iamge8.PNG) 
 
 
 
