@@ -91,7 +91,7 @@ app.get('/archive.ejs', (req, res) => {
 });
 
 app.get('/graph.ejs/:date', (req, res) => {
-    const sql = "Select DATE_FORMAT(date, '%m月')as date ,savings,summary FROM savings WHERE date = " + req.params.date + " ORDER BY date ASC";
+    const sql = "Select DATE_FORMAT(date, '%m月')as date ,savings,summary,type FROM savings WHERE date = " + req.params.date + " ORDER BY date ASC";
     con.query(sql, req.params.date, function (err, result, fields) {
         if (err) throw err;
         console.log(result)
