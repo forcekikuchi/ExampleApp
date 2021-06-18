@@ -13,7 +13,7 @@ id saving summary date
 ![価格順](./img/image3.PNG)  
 ![日付順](./img/image2.PNG)  
   
-#追加  
+# 追加  
 表の下にアーカイブへ遷移するボタンを作りました  
 ![アーカイブボタン](./img/image6.PNG)  
 これを押すと年ごとに表が分かれて表示されます  
