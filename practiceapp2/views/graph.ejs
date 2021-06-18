@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>アーカイブ</title>
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary mb-2">
+        <a href="#" class="navbar-brand">アーカイブ</a>
+    </nav>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div class="container" style="margin-top:50px;">
+        <table class="table table-striped" id="htmlTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">日付</th>
+                    <th scope="col">支出</th>
+                    <th scope="col">概要</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i in savings) { %>
+                    <tr>
+                        <% let obj=savings[i]; %>
+                            <td>
+                                <%= obj.date %>
+                            </td>
+                            <td>
+                                &yen;<%= obj.savings %>
+                            </td>
+                            <td>
+                                <%= obj.summary %>
+                            </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h2><a href="/archive.ejs" class="btn btn-primary" role="button">戻る</a></h2>
+    </div>
+
+    <script>
+        let ctx = document.getElementById("myChart").getContext('2d');
+        let value = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        const month = new Array("01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月");
+
+        let data = [];
+        const table = document.querySelector("#htmlTable");
+        let yLength = table.rows[0].cells.length;
+        let xLength = table.rows.length;
+        let save = [xLength][yLength];
+        for (let i = 0; i < xLength; i++) {
+            data[i] = [];
+            for (let g = 0; g < yLength; g++) {
+                data[i][g] = table.rows[i].cells[g].firstChild.data.trim();
+            }
+        }
+
+        for (let i = 1; i < xLength; i++) {
+            for (let j = 0; j < month.length; j++) {
+                if (data[i][0] == month[j]) {
+                    let num = data[i][1].slice(1);
+                    value[j] += parseInt(num);
+                }
+            }
+        }
+
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: month,
+                datasets: [{
+                    label: "支出",
+                    data: value,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+
+
+
+</html>

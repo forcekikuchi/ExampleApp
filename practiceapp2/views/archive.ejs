@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+    </style>
+    <title>アーカイブ</title>
+
+</head>
+
+<body>
+    <h1>アーカイブ</h1>
+    <div class="container" style="margin-top:50px;">
+        <table class="table table-striped" id="htmlTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">日付</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i in savings) { %>
+                    <tr>
+                        <% let obj=savings[i]; %>
+                            <th>
+                                <a href="/graph.ejs/<%= obj.date %>">
+                                    <%= obj.date %>
+                                </a>
+                            </th>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2><a href="/" class="btn btn-primary" role="button">戻る</a></h2>
+    </div>
+    <script>
+
+    </script>
+
+</body>
+
+</html>

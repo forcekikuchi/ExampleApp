@@ -81,6 +81,25 @@ app.get('/sortPrice', (req, res) => {
     })
 });
 
+app.get('/archive.ejs', (req, res) => {
+    const sql = "SELECT distinct DATE_FORMAT(date, '%Y')as date from savings ORDER BY date ASC;";
+    con.query(sql, req.body, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result)
+        res.render('archive', { savings: result });
+    })
+});
+
+app.get('/graph.ejs/:date', (req, res) => {
+    const sql = "Select DATE_FORMAT(date, '%m月')as date ,savings,summary FROM savings WHERE date = " + req.params.date + " ORDER BY date ASC";
+    con.query(sql, req.params.date, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result)
+        res.render('graph', { savings: result });
+    })
+});
+
+
 
 app.listen(port);
 console.log('Server listen on port:' + port);
